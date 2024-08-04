@@ -1,8 +1,7 @@
-
 package servlet;
 
 import dao.StudentDAO;
-import model.Course;
+import model.CourseStudent;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,8 +13,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/course")
-public class CourseServlet extends HttpServlet {
+@WebServlet("/courseStudent")
+public class CourseStudentServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private StudentDAO studentDAO;
 
@@ -33,18 +32,18 @@ public class CourseServlet extends HttpServlet {
         try {
             switch (action) {
                 default:
-                    listCourse(request, response);
+                    listCourseStudent(request, response);
                     break;
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
     }
-    private void listCourse(HttpServletRequest request, HttpServletResponse response)
+    private void listCourseStudent(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        List<Course> listCourse = studentDAO.selectAllCourses();
-        request.setAttribute("listCourse", listCourse);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("course-list.jsp");
+        List<CourseStudent> listCourseStudent = studentDAO.selectAllCourseStudent();
+        request.setAttribute("listCourseStudent", listCourseStudent);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("courseStudent-list.jsp");
         dispatcher.forward(request, response);
     }
 }

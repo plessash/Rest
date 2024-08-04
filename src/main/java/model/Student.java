@@ -8,7 +8,7 @@ public class Student {
     private int coordinator_id;
     private List<Course> courses; //ManyToMany
 
-    public Student() {
+    public Student(String name, int coordinator_id) {
     }
 
     public Student(int id, String name, int coordinator_id) {
