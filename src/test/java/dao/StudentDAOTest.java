@@ -1,3 +1,4 @@
+
 package dao;
 
 import model.Student;
@@ -18,7 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Testcontainers
 class StudentDAOTest {
     @Container
-    private static final PostgreSQLContainer<?> postgresqlContainer = new PostgreSQLContainer<>("postgres:11.1")
+    private static final PostgreSQLContainer<?> postgresqlContainer = new PostgreSQLContainer<>("postgres:16-alpine")
+            //.withExposedPorts(5438)
             .withUsername("test")
             .withPassword("test")
             .withDatabaseName("test");
@@ -34,8 +36,8 @@ class StudentDAOTest {
         );
         try (Statement statement = connection.createStatement()) {
             String createTableSQL = "CREATE TABLE students (\n"
-                    + "id INT AUTO_INCREMENT PRIMARY KEY,\n"
-                    + "name VARCHAR(255),\n"
+                    + "id SERIAL PRIMARY KEY,\n"
+                    + "name VARCHAR(255) NOT NULL,\n"
                     + "coordinator_id INT\n"
                     + ");";
             statement.execute(createTableSQL);
