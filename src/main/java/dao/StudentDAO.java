@@ -3,7 +3,6 @@
 package dao;
 
 import connectDB.ConnectionDB;
-//import model.Coordinator;
 import model.Course;
 import model.Student;
 import model.CourseStudent;
@@ -21,7 +20,6 @@ public class StudentDAO extends ConnectionDB {
     private static final String SELECT_STUDENT_BY_ID = "select id,name,coordinator_id from students where id =?";
     private static final String SELECT_ALL_STUDENTS = "select * from students";
     private static final String SELECT_ALL_COURSES = "select * from courses";
-    //private static final String SELECT_COORDINATOR = "select * from coordinator";
     private static final String SELECT_ALL_COURSE_STUDENT = "select * from courseStudent";
     private static final String DELETE_STUDENTS_SQL = "delete from students where id = ?;";
     private static final String UPDATE_STUDENTS_SQL = "update students set name = ?, coordinator_id =? where id = ?;";
